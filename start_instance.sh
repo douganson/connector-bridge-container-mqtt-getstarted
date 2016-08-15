@@ -29,6 +29,11 @@ run_configurator()
   su -l arm -s /bin/bash -c "/home/arm/configurator/runConfigurator.sh 2>&1 1> /tmp/configurator.log &"
 }
 
+run_mosquitto() {
+  cd /home/arm
+  mosquitto -d -c /etc/mosquitto/mosquitto.conf &
+}
+
 run_nodered() {
   cd /home/arm
   node-red 2>&1 1>/tmp/node-red.log &
@@ -40,6 +45,7 @@ main()
    update_hosts
    run_bridge
    run_configurator
+   run_mosquitto
    run_nodered
    run_supervisord
 }
