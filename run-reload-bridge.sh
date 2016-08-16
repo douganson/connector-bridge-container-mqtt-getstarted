@@ -38,7 +38,7 @@ fi
 
 if [ "$?" = "0" ]; then
     echo "Starting Bridge..."
-    ./start-bridge.sh
+    ./start-bridge.sh $*
     if [ "$?" = "0" ]; then
         echo "Bridge Started!"
         exit 0

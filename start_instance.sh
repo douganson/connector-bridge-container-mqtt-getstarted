@@ -30,7 +30,6 @@ set_api_token() {
         FILE="gateway.properties"
         cd /home/arm
 	sed -e "s/Your_Connector_API_Token_Goes_Here/${API_TOKEN}/g" ${DIR}/${FILE} 2>&1 1> ${DIR}/${FILE}.new
-	echo "$1 $2 $3" 2>&1 1> ${DIR}/${FILE}.doug
         mv ${DIR}/${FILE} ${DIR}/${FILE}.old
         mv ${DIR}/${FILE}.new ${DIR}/${FILE}
 	chown arm.arm ${DIR}/${FILE}
