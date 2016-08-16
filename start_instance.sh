@@ -31,7 +31,7 @@ run_configurator()
 
 run_mosquitto() {
   cd /home/arm
-  su -l arm -s /bin/bash -c "mosquitto -d -c /etc/mosquitto/mosquitto.conf &"
+  mosquitto -d -c /etc/mosquitto/mosquitto.conf &
 }
 
 run_nodered() {
