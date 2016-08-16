@@ -23,6 +23,15 @@ run_bridge()
    su -l arm -s /bin/bash -c "/home/arm/restart.sh"
 }
 
+set_api_token() {
+   API_TOKEN="$1"
+   if [ "${API_TOKEN}X" != "X" ]; then
+	sed -e s/"Your_Connector_API_Token_Goes_Here"/"${API_TOKEN}"/g < mds/connector-bridge/conf/gateway.properties > mds/connector-bridge/conf/gateway.properties.new
+        mv mds/connector-bridge/conf/gateway.properties mds/connector-bridge/conf/gateway.properties-OLD
+        mv mds/connector-bridge/conf/gateway.properties.new mds/connector-bridge/conf/gateway.properties
+   fi
+}
+
 run_configurator()
 {
   cd /home/arm/configurator
@@ -36,15 +45,16 @@ run_mosquitto() {
 
 run_nodered() {
   cd /home/arm
-  su -l arm -s /bin/bash -c "node-red 2>&1 1>/tmp/node-red.log &"
+  su -l arm -s /bin/bash -c "node-red flows_fcb83491ce12.json 2>&1 1>/tmp/node-red.log &"
 }
 
 main() 
 {
    # report_ip_address
    update_hosts
+   set_api_token $*
    run_bridge
-   run_configurator
+   run_configurator 
    run_mosquitto
    run_nodered
    run_supervisord
