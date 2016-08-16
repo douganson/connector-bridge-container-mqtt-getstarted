@@ -29,7 +29,7 @@ set_api_token() {
         DIR="mds/connector-bridge/conf"
         FILE="gateway.properties"
         cd /home/arm
-	sed -e "s/Your_Connector_API_Token_Goes_Here/${API_TOKEN}/g" ${DIR}/${FILE} > ${DIR}/${FILE}.new
+	sed -e "s/Your_Connector_API_Token_Goes_Here/${API_TOKEN}/g" ${DIR}/${FILE} 2>&1 1> ${DIR}/${FILE}.new
         mv ${DIR}/${FILE} ${DIR}/${FILE}.old
         mv ${DIR}/${FILE}.new ${DIR}/${FILE}
 	chown arm.arm ${DIR}/${FILE}
