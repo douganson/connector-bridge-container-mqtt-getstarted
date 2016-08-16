@@ -24,8 +24,8 @@ run_bridge()
 }
 
 set_api_token() {
+   API_TOKEN="$1"
    if [ "${API_TOKEN}X" != "X" ]; then
-        API_TOKEN="$1"
         DIR="mds/connector-bridge/conf"
         FILE="gateway.properties"
         cd /home/arm
