@@ -24,11 +24,13 @@ run_bridge()
 }
 
 set_api_token() {
+   cd /home/arm
    API_TOKEN="$1"
    if [ "${API_TOKEN}X" != "X" ]; then
 	sed -e s/"Your_Connector_API_Token_Goes_Here"/"${API_TOKEN}"/g < mds/connector-bridge/conf/gateway.properties > mds/connector-bridge/conf/gateway.properties.new
         mv mds/connector-bridge/conf/gateway.properties mds/connector-bridge/conf/gateway.properties-OLD
         mv mds/connector-bridge/conf/gateway.properties.new mds/connector-bridge/conf/gateway.properties
+	chown arm.arm mds/connector-bridge/conf/gateway.properties*
    fi
 }
 
