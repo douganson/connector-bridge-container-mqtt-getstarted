@@ -31,12 +31,12 @@ run_configurator()
 
 run_mosquitto() {
   cd /home/arm
-  mosquitto -d -c /etc/mosquitto/mosquitto.conf &
+  su -l arm -s /bin/bash -c "mosquitto -d -c /etc/mosquitto/mosquitto.conf &"
 }
 
 run_nodered() {
   cd /home/arm
-  node-red 2>&1 1>/tmp/node-red.log &
+  su -l arm -s /bin/bash -c "node-red 2>&1 1>/tmp/node-red.log &"
 }
 
 main() 
