@@ -41,6 +41,9 @@ enable_long_polling() {
 
 set_api_token() {
    API_TOKEN="$2"
+   if [ "$2" = "use-long-polling" ]; then
+        API_TOKEN="$3" 
+   fi
    if [ "${API_TOKEN}X" != "X" ]; then
         DIR="mds/connector-bridge/conf"
         FILE="gateway.properties"
