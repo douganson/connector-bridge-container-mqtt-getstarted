@@ -8,7 +8,7 @@ Original Date: August 12, 2016
 
     8/14/2016: Updated with notification type fixes. NODEFLOW.txt updated with sample node flow for local NodeRED instances
 
-    8/16/2016: Updated script to support DockerHub with passthru of API Token
+    8/16/2016: Updated script to support DockerHub with passthru of API Token. Bridge updated. Bridge supports long polling
 
 Container Bridge source (Apache 2.0 licensed - Enjoy!): https://github.com/ARMmbed/connector-bridge.git
  

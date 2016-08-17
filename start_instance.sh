@@ -23,6 +23,19 @@ run_bridge()
    su -l arm -s /bin/bash -c "/home/arm/restart.sh"
 }
 
+enable_long_polling() {
+   LONG_POLL="$3"
+   if [ "${LONG_POLL}" = "use-long-polling" ]; then
+        DIR="mds/connector-bridge/conf"
+        FILE="gateway.properties"
+        cd /home/arm
+        sed -e "s/mds_enable_long_poll=false/mds_enable_long_poll=true/g" ${DIR}/${FILE} 2>&1 1> ${DIR}/${FILE}.new
+        mv ${DIR}/${FILE} ${DIR}/${FILE}.poll
+        mv ${DIR}/${FILE}.new ${DIR}/${FILE}
+        chown arm.arm ${DIR}/${FILE}
+   fi	
+}
+
 set_api_token() {
    API_TOKEN="$2"
    if [ "${API_TOKEN}X" != "X" ]; then
@@ -30,7 +43,7 @@ set_api_token() {
         FILE="gateway.properties"
         cd /home/arm
 	sed -e "s/Your_Connector_API_Token_Goes_Here/${API_TOKEN}/g" ${DIR}/${FILE} 2>&1 1> ${DIR}/${FILE}.new
-        mv ${DIR}/${FILE} ${DIR}/${FILE}.old
+        mv ${DIR}/${FILE} ${DIR}/${FILE}.token
         mv ${DIR}/${FILE}.new ${DIR}/${FILE}
 	chown arm.arm ${DIR}/${FILE}
    fi
@@ -57,6 +70,7 @@ main()
    # report_ip_address
    update_hosts
    set_api_token $*
+   enable_long_polling $*
    run_bridge
    run_configurator 
    run_mosquitto
