@@ -25,6 +25,9 @@ run_bridge()
 
 enable_long_polling() {
    LONG_POLL="$3"
+   if [ "$2" = "use-long-polling" ]; then
+        LONG_POLL="$2"
+   fi
    if [ "${LONG_POLL}" = "use-long-polling" ]; then
         DIR="mds/connector-bridge/conf"
         FILE="gateway.properties"
