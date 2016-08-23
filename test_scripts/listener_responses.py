@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
-ip = "192.168.1.230"
-port = 1883
+ip = "127.0.0.1"
+port = 3883
 
 import paho.mqtt.client as paho
 mqttc = paho.Client()

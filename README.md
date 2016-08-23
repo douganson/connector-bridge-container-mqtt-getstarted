@@ -10,6 +10,8 @@ Original Date: August 12, 2016
 
     8/16/2016: Updated script to support DockerHub with passthru of API Token. Bridge updated. Bridge supports long polling
 
+    8/23/2016: Updated with latest bridge. MQTT topics now align with AWS IoT.
+
 Container Bridge source (Apache 2.0 licensed - Enjoy!): https://github.com/ARMmbed/connector-bridge.git
  
 
