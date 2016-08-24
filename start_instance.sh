@@ -66,6 +66,11 @@ run_mosquitto() {
   mosquitto -d -c /etc/mosquitto/mosquitto.conf &
 }
 
+set_perms() {
+  cd /home/arm
+  chown -R arm.arm .
+}
+
 run_nodered() {
   cd /home/arm
   su -l arm -s /bin/bash -c "node-red flows_fcb83491ce12.json 2>&1 1>/tmp/node-red.log &"
@@ -77,6 +82,7 @@ main()
    update_hosts
    set_api_token $*
    enable_long_polling $*
+   set_perms $*
    run_bridge
    run_configurator 
    run_mosquitto
