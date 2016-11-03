@@ -55,6 +55,23 @@ set_api_token() {
    fi
 }
 
+set_mbed_rest_api() {
+   MBED_REST_API="$3"
+   if [ "$2" = "use-long-polling" ]; then
+       MBED_REST_API="$4"
+   fi
+   if [ "${MBED_REST_API}X" != "X" ]; then
+        DIR="mds/connector-bridge/conf"
+        FILE="gateway.properties"
+        cd /home/arm
+        sed -e "s/mbed_rest_api_goes_here/${MBED_REST_API}/g" ${DIR}/${FILE} 2>&1 1> ${DIR}/${FILE}.new
+        mv ${DIR}/${FILE} ${DIR}/${FILE}.mbed_rest_api
+        mv ${DIR}/${FILE}.new ${DIR}/${FILE}
+        chown arm.arm ${DIR}/${FILE}
+   fi
+
+}
+
 run_configurator()
 {
   cd /home/arm/configurator
@@ -82,6 +99,7 @@ main()
    update_hosts
    set_api_token $*
    enable_long_polling $*
+   set_mbed_rest_api $*
    set_perms $*
    run_bridge
    run_configurator 
