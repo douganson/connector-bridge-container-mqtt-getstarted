@@ -1,5 +1,9 @@
 #!/bin/bash
 
+setup_locale() {
+   locale-gen en_US en_US.UTF-8
+}
+
 setup_bridge() 
 {
     cd /home/arm
@@ -73,6 +77,7 @@ cleanup()
 
 main() 
 {
+    setup_locale
     setup_bridge
     setup_configurator
     setup_ssh

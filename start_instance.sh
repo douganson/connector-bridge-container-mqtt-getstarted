@@ -1,11 +1,4 @@
-#!/bin/sh
-
-report_ip_address()
-{
-   IP_ADDRESS=`ifconfig | perl -nle'/dr:(\S+)/ && print $1' | tail -1`
-   HOSTNAME=`hostname`
-   echo "Container Hostname: " ${HOSTNAME} " IP: " ${IP_ADDRESS}
-}
+#!/bin/bash
 
 update_hosts()
 {
@@ -92,7 +85,6 @@ run_nodered() {
 
 main() 
 {
-   # report_ip_address
    update_hosts
    set_api_token $*
    enable_long_polling $*
