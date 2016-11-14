@@ -65,11 +65,6 @@ setup_crontab() {
     su -l arm -s /bin/bash -c "crontab /home/arm/crontab"
 }
 
-setup_nodered() {
-   npm install -g --unsafe-perm node-red
-   ln -s /usr/bin/nodejs /usr/bin/node
-}
-
 cleanup()
 {
    /bin/rm -f /home/arm/configure_instance.sh 2>&1 1>/dev/null
@@ -84,7 +79,6 @@ main()
     setup_passwords
     setup_sudoers
     setup_java
-    setup_nodered
     setup_crontab
     cleanup
 }

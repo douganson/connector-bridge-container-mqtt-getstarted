@@ -64,6 +64,12 @@ set_perms() {
   chown -R arm.arm .
 }
 
+setup_nodered() {
+   cd /home/arm
+   npm install -g --unsafe-perm node-red
+   ln -s /usr/bin/nodejs /usr/bin/node
+}
+
 run_nodered() {
   cd /home/arm
   su -l arm -s /bin/bash -c "node-red flows_fcb83491ce12.json 2>&1 1>/tmp/node-red.log &"
@@ -78,6 +84,7 @@ main()
    run_bridge
    run_configurator 
    run_mosquitto
+   setup_nodered
    run_nodered
    run_supervisord
 }
