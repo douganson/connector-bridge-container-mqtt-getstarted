@@ -67,8 +67,8 @@ setup_crontab() {
 
 setup_nodered() {
    cd /home/arm
-   npm install -g --unsafe-perm node-red 2>&1 /tmp/node-red-install.log
-   ln -s /usr/bin/nodejs /usr/bin/node
+   sudo npm install -g --unsafe-perm node-red
+   sudo ln -s /usr/bin/nodejs /usr/bin/node
 }
 
 cleanup()
