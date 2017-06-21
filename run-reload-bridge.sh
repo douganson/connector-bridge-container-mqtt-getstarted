@@ -2,7 +2,7 @@
 
 echo "Getting bridge container ID..."
 
-ID=`docker ps | grep connector-bridge | awk '{print $1}'`
+ID=`docker ps -a | grep home | grep arm | awk '{print $1}'`
 
 if [ "${ID}X" != "X" ]; then
     echo "Stopping $ID"
@@ -28,6 +28,7 @@ fi
 
 echo "Building container image..."
 
+sleep 5
 
 if [ -f Dockerfile ]; then
     docker build -t "mbed/connector-bridge" .
@@ -37,13 +38,14 @@ else
 fi
 
 if [ "$?" = "0" ]; then
-    echo "Starting Bridge..."
+    echo "Starting Connector Bridge..."
     ./start-bridge.sh $*
     if [ "$?" = "0" ]; then
-        echo "Bridge Started!"
+        echo "Connector Bridge Started!"
         exit 0
     else
- 	echo "Bridge Start FAILED"
-	exit 2
+        echo "Connector Bridge Start FAILED"
+        exit 2
     fi
 fi
+
