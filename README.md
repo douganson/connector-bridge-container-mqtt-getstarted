@@ -1,4 +1,4 @@
-mbed Device Connector/mbed Cloud integration bridge for generic MQTT broker (get-started version)
+mbed Device Connector/mbed Cloud integration bridge for generic MQTT broker (get-started version) 
 
 07/19/2018: updated bridge - fixed major bug in use of long polling with initial device discovery.
 
